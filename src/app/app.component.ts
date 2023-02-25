@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,33 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  home() {
+    this.router.navigate(['tabs/tab1']);
+  }
+  nearby() {
+    this.router.navigate(['tabs/tab2']);
+  }
+  cart() {
+    this.router.navigate(['tabs/tab3']);
+  }
+  payments() {
+    this.router.navigate(['payments-details']);
+  }
+  orders() {
+    this.router.navigate(['order']);
+  }
+  notifications() {
+    this.router.navigate(['']);
+  }
+  inbox() {
+    this.router.navigate(['']);
+  }
+  about() {
+    this.router.navigate(['']);
+  }
+  logout() {
+    this.router.navigate(['login']);
+  }
 }

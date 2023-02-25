@@ -1,1 +1,7 @@
 
+ion-tab-bar {
+    padding: 10px;
+    ion-tab-button[aria-selected="true"] {
+      color: var(--ion-color-warning);
+    }
+  }
