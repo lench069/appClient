@@ -55,7 +55,7 @@ export class BienvenidaPage implements OnInit {
   }
 
   onSkip() {
-    this.router.navigate(['inicio']);
+    this.router.navigate(['login']);
   }
 
   onBack() {

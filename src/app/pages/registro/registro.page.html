@@ -1,0 +1,46 @@
+<!--
+  Authors : bunchdevelopers (Rahul Jograna)
+  Website : https://bunchdevelopers.com/
+  App Name : ionic6Template Pack
+  This App Template Source code is licensed as per the
+  terms found in the Website https://bunchdevelopers.com/license
+  Copyright and Good Faith Purchasers © 2021-present bunchdevelopers.
+ -->
+ <ion-content class="ion-padding">
+
+  <div class="title">
+    <ion-label class="heading">Comencemos con los<br> detalles basicos!</ion-label>
+    <ion-label class="sub_heading">Crea una cuenta para que puedas pedir tus <br> productos favoritos de manera facil y rapida.</ion-label>
+  </div>
+
+  <div class="main_div">
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Cedula" [(ngModel)]="cedula"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Telefono" [(ngModel)]="telefono"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="email" placeholder="Email" [(ngModel)]="correo"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Direccion" [(ngModel)]="direccion"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-input type="password" placeholder="Password" [(ngModel)]="pass"></ion-input>
+      <ion-icon slot="end" name="eye" color="medium"></ion-icon>
+    </ion-item>
+
+    <ion-button class="content_button" (click)="onRegister()" expand="block">
+      Registrar
+    </ion-button>
+
+    <div class="title">
+      <ion-label class="sub_heading"> Ya tienes cuenta? <span (click)="login()">Ingresa ahora</span></ion-label>
+    </div>
+  </div>
+
+</ion-content>
