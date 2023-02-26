@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ApisService } from 'src/app/services/apis.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-registro',
@@ -10,26 +11,29 @@ import { ApisService } from 'src/app/services/apis.service';
 })
 export class RegistroPage implements OnInit {
 
-  public id: number = 0;
-  cedula: string = '';
-  nombre: string = '';
-  telefono: string = '';
-  correo: string = '';
-  direccion: string = '';
-  uuid: string = '';
-  pass: string = '';
+    public id: number = 0;
+    cedula: string = '';
+    nombre: string = '';
+    telefono: string = '';
+    correo: string = '';
+    direccion: string = '';
+    uuid: string = '';
+    pass: string = '';
 
   constructor(
     private navCtrl: NavController,
     private router: Router,
-  	//private storage: Storage,
+  	private storage: Storage,
     public toastCtrl: ToastController,
     private servicio:ApisService,
     public loading: LoadingController
-  ) { }
+  ) {
+    this.storage.create();
+   }
 
   async ngOnInit() {
-    //this.uuid = await this.storage.get('uuid');
+    this.uuid = await this.storage.get('uuid');
+   
   }
 
   login() {
@@ -73,27 +77,21 @@ export class RegistroPage implements OnInit {
         console.log(data);
         l.dismiss();
         this.servicio.Mensaje(data.mensaje, data.info.id == 0 ? 'danger' : 'success');
-        /*if (data.info.id > 0) {
+        if (data.info.id > 0) {
           this.storage.set('cliente', {
             correo: this.correo,
             direccion: this.direccion,
             identificacion: this.cedula,
             nombre: this.nombre,
             telefono: this.telefono});
-          this.servicio.irA('/inicio-cliente');
-        }*/
+          this.servicio.irA('/login');
+        }
       },(error:any)=>{
           this.servicio.Mensaje('No se pudo realizar la peticion, compruebe su conexion a internet.','danger');
           l.dismiss();//quita el loading una vez cargue todo
       });
-
     }
   }
-  facebook() {
-
-  }
-  google() {
-
-  }
+  
 
 }

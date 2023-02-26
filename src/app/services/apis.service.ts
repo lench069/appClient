@@ -8,7 +8,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class ApisService {
 
-  private URL_API: string = 'http://localhost/appBackEnd/';
+  private URL_API: string = 'http://192.168.100.94/appBackEnd/';
 
   constructor(
     private router: Router,

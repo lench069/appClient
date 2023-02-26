@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
+import { Device } from '@capacitor/device';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-bienvenida',
@@ -19,7 +22,15 @@ export class BienvenidaPage implements OnInit {
 
   constructor(
     private router: Router,
+    private storage: Storage
   ) {
+    this.storage.create();
+    
+    //Obtener device
+     Device.getId().then((resp: any) => {
+      console.log("este es su uuid: " + resp.uuid);
+      this.storage.set('uuid', resp.uuid);
+     }).catch((error: any) => console.log("Error al obtener el uuid: "+error));
    
     setTimeout(() => {
       this.slides.length().then((data: any) => {
