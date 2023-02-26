@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ApisService } from 'src/app/services/apis.service';
 import { Storage } from '@ionic/storage-angular';
+import { Device } from '@capacitor/device';
 
 @Component({
   selector: 'app-registro',
@@ -28,11 +29,15 @@ export class RegistroPage implements OnInit {
     private servicio:ApisService,
     public loading: LoadingController
   ) {
-    this.storage.create();
+ 
    }
 
   async ngOnInit() {
-    this.uuid = await this.storage.get('uuid');
+
+    await Device.getId().then((resp: any) => {
+      console.log("este es su uuid: " + resp.uuid);
+      this.uuid = resp.uuid;
+     }).catch((error: any) => console.log("Error al obtener el uuid: "+error));
    
   }
 
@@ -73,6 +78,7 @@ export class RegistroPage implements OnInit {
         direccion: this.direccion,
         uuid: this.uuid,
         pass: this.pass,
+        activo: 1,
       }).subscribe((data:any)=>{
         console.log(data);
         l.dismiss();

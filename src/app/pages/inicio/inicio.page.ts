@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
+import { Device } from '@capacitor/device';
+import { LoadingController } from '@ionic/angular';
+import { ApisService } from 'src/app/services/apis.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-inicio',
@@ -8,10 +12,14 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
+  private uuid: string = '';
 
   constructor(
     private router: Router,
-    public util : UtilsService
+    public util : UtilsService,
+    public loading: LoadingController,
+    private servicio:ApisService,
+    private storage: Storage
   
   ) { }
 
@@ -23,7 +31,10 @@ export class InicioPage implements OnInit {
     slidesPerView: 2.1,
   };
 
-  ngOnInit() {
+  async ngOnInit() {
+   
+     
+
   }
 
   onProducts() {

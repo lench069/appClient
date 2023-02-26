@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, LoadingController, NavController } from '@ionic/angular';
 import { Device } from '@capacitor/device';
 import { Storage } from '@ionic/storage-angular';
+import { ApisService } from 'src/app/services/apis.service';
 
 
 @Component({
@@ -19,10 +20,14 @@ export class BienvenidaPage implements OnInit {
 
   slideLength: any = 1;
   slidesNumber: any = [];
+  private uuid: string = '';
 
   constructor(
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public loading: LoadingController,
+    private servicio:ApisService,
+    private navCtrl: NavController
   ) {
     this.storage.create();
     
@@ -44,9 +49,18 @@ export class BienvenidaPage implements OnInit {
       });
     }, 1000);
 
+    Device.getId().then((resp: any) => {
+      console.log("este es su uuid: " + resp.uuid);
+      this.uuid = resp.uuid;
+
+    }).catch((error: any) => console.log("Error al obtener el uuid: "+error));
+
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+
   }
 
   slideChanged() {
@@ -65,8 +79,26 @@ export class BienvenidaPage implements OnInit {
     this.slides.slideNext();
   }
 
-  onSkip() {
-    this.router.navigate(['login']);
+  async onSkip() {
+    let l = await this.loading.create();   
+    l.present();
+    //this.servicio.Cliente_Consulta('a1feb3749ecf12fe')
+    this.servicio.Cliente_Consulta(this.uuid)
+      .subscribe((data: any) => {
+        l.dismiss();
+        console.log(data);
+        if (data.info.item.id > 0) {     
+          console.log('Validacion'); 
+          this.servicio.irA('/tabs');
+        } else{
+          this.servicio.irA('/registro');
+        }
+      }, _ => {
+        l.dismiss();
+        this.servicio.Mensaje('No se pudo realizar la petición.', 'danger');
+        this.servicio.irA('/registro');
+      });
+
   }
 
   onBack() {

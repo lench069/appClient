@@ -32,8 +32,13 @@ export class ApisService {
       correo: data.correo,
       direccion: data.direccion,
       uuid: data.uuid,
-      pass: data.pass
+      pass: data.pass,
+      activo: data.activo
     }));
+  }
+
+  Cliente_Consulta(_id: string) {
+    return this.http.get(this.URL_API + 'consultar-cliente/' + _id);
   }
 
   objectToFormData(obj: any, form?: any, namespace?: any) {
