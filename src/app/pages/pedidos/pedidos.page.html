@@ -1,9 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pedidos</ion-title>
+
+ <ion-header>
+  <ion-toolbar lines="none" mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="util.openSideMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pedidos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onFav()">
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <ion-row *ngFor="let item of pedidos">
+
+    <ion-col size="12">
+
+      <div class="text" >
+        <ion-label class="ttl">Pedido #{{item.id}}</ion-label>
+        <ion-label class="sub_ttl">{{item.fecha}}</ion-label>
+
+        <div class="icn_ttl" (click)="openRest()">
+          <ion-icon name="restaurant-outline"></ion-icon>
+          <ion-label>Cant. Productos: {{item.n_productos}} </ion-label>
+        </div>
+
+        <div class="icn_ttl" (click)="openRest()">
+          <ion-icon name="man-outline"></ion-icon>
+          <ion-label>Atendido por: {{item.vendedor}}</ion-label>
+        </div>
+
+        <div class="icn_ttl" (click)="openRest()">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <ion-label>Total: {{item.total}}</ion-label>
+        </div>
+
+
+          <ion-badge class="pp" color="warning" *ngIf="item.estado == 0">Creado</ion-badge>
+          <ion-badge class="pp" color="primary" *ngIf="item.estado == 1">Procesado</ion-badge>
+          <ion-badge class="pp" color="success" *ngIf="item.estado == 2">Finalizado</ion-badge>
+
+      </div>
+
+    </ion-col>
+
+  </ion-row>
 
 </ion-content>

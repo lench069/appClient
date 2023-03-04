@@ -123,5 +123,9 @@ export class ApisService {
     }));
   }
 
+  Pedido_Listado_cliente (idcliente: number) {
+    return this.http.get(this.URL_API + 'historial/' + idcliente);
+  }
+
 
 }
