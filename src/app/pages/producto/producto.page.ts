@@ -11,7 +11,7 @@ import { ApisService } from 'src/app/services/apis.service';
 })
 export class ProductoPage implements OnInit {
   public productoId: number = 0;
-  public producto: any = {};
+  public producto: any= {};
   public pedidolocal: any = [];
 
   constructor(
@@ -107,7 +107,19 @@ export class ProductoPage implements OnInit {
         {
           this.producto = item;
         }
-      });
+        console.log(this.producto);
+      })
+      if(Object.entries(this.producto).length === 0){
+        this.servicio.Buscar_Producto(productoId)
+        .subscribe((data: any) => {
+          this.producto = data.info.item;
+          this.producto.cantidad = 0;
+          console.log(this.producto);
+        }, (error: any) => {
+        });
+      }
+      
+      ;
     }
     
   }

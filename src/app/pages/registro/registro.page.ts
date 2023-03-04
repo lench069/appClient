@@ -38,7 +38,7 @@ export class RegistroPage implements OnInit {
       console.log("este es su uuid: " + resp.uuid);
       this.uuid = resp.uuid;
      }).catch((error: any) => console.log("Error al obtener el uuid: "+error));
-   
+     this.storage.create();
   }
 
   login() {
@@ -89,8 +89,9 @@ export class RegistroPage implements OnInit {
             direccion: this.direccion,
             identificacion: this.cedula,
             nombre: this.nombre,
-            telefono: this.telefono});
-          this.servicio.irA('/login');
+            telefono: this.telefono,
+            id: data.info.id});
+          this.servicio.irA('/tabs');
         }
       },(error:any)=>{
           this.servicio.Mensaje('No se pudo realizar la peticion, compruebe su conexion a internet.','danger');

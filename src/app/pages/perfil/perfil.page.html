@@ -1,9 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
+
+ <ion-header>
+  <ion-toolbar lines="none" mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="util.openSideMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button >
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <div class="profile">
+
+    <ion-thumbnail>
+      <img src="assets/images/p2.jpg" />
+      <ion-buttons>
+        <ion-button >
+          <ion-icon slot="start" name="pencil" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-thumbnail>
+
+    <ion-label class="heading">Hola Lenin!</ion-label>
+
+  </div>
+
+  <ion-item lines="none">
+    <ion-input type="text" placeholder="Cedula" [(ngModel)]="cedula"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input type="text" placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input type="text" placeholder="Telefono" [(ngModel)]="telefono"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input type="email" placeholder="Email" [(ngModel)]="correo"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-input type="text" placeholder="Direccion" [(ngModel)]="direccion"></ion-input>
+  </ion-item>
+
+  <div class="btn">
+    <ion-button class="content_button" (click)="onEdit()" >
+      Editar
+    </ion-button>
+  </div>
 
 </ion-content>

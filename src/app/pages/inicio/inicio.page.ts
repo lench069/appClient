@@ -39,13 +39,14 @@ export class InicioPage implements OnInit {
   };
 
   async ngOnInit() {
-   this.cliente = await this.storage.get('cliente');
-   console.log(this.cliente);
+   
      
 
   }
 
   async ionViewWillEnter() {
+  this.cliente = await this.storage.get('cliente');
+   console.log(this.cliente);
     this.Cargar_Categorias();
     this.Cargar_Productos();
     let pedido = await this.storage.get('pedidos');

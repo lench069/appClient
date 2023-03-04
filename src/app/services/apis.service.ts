@@ -127,5 +127,17 @@ export class ApisService {
     return this.http.get(this.URL_API + 'historial/' + idcliente);
   }
 
+  Cliente_Actualizar_Cuenta(data:any) {
+    return this.http.post(
+      this.URL_API + 'actualizar-cliente/'+data.id, 
+      this.objectToFormData({
+        nombres: data.nombres,
+        apellidos: data.apellidos,
+        foto:data.imagen
+
+      }) 
+      );
+  };
+
 
 }
