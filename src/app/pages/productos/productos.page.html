@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar lines="none" mode="md">
+    <ion-buttons slot="start" >
+      <ion-back-button (click)="onBack()" text=''>atras</ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button >
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="searchBar">
+    <ion-item lines="none">
+      <ion-input type="text" placeholder="Bucar..."></ion-input>
+      <ion-icon slot="end" name="search-outline" style="margin-right: 60px;"></ion-icon>
+      <div class="icon">
+        <ion-icon slot="end" name="funnel-outline" class="icn"></ion-icon>
+      </div>
+    </ion-item>
+  </div>
+
+  <div class="title">
+    <ion-label class="heading">Platos</ion-label>
+  </div>
+  <ion-row style="margin-bottom: 10px;" *ngFor="let producto of productos" (click)="servicio.irA('/producto/'+producto.id)">
+    <ion-col size="4">
+      <ion-img class="featured_img"  [src]="producto.imagen"></ion-img>
+    </ion-col>
+    <ion-col size="8">
+      <div class="title">
+        <ion-label >{{producto.nombre}}</ion-label>
+       
+      </div>
+      <ion-label class="cate">{{producto.descripcion}}</ion-label>
+      <div class="sub_title" >
+        <ion-icon name="star"></ion-icon>
+        <ion-label> 4.8 (112)</ion-label>
+        <ion-label class="price">$ {{producto.precio}}</ion-label>
+      </div>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

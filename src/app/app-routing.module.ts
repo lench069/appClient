@@ -38,8 +38,16 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
+  {
+    path: 'productos/:cod_categoria',
+    loadChildren: () => import('./pages/productos/productos.module').then( m => m.ProductosPageModule)
+  },
+  {
+    path: 'producto/:productoId',
+    loadChildren: () => import('./pages/producto/producto.module').then( m => m.ProductoPageModule)
+  },
 
-  
+
 ];
 @NgModule({
   imports: [

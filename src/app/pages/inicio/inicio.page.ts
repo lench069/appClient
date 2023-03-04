@@ -13,15 +13,22 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class InicioPage implements OnInit {
   private uuid: string = '';
+  public cliente:any = '';
+  public categorias: any[] = [];
+  public total: number = 0;
+  public productos: any[] = [];
+  public totalP: number = 0;
 
   constructor(
     private router: Router,
     public util : UtilsService,
     public loading: LoadingController,
-    private servicio:ApisService,
+    public servicio:ApisService,
     private storage: Storage
   
-  ) { }
+  ) { 
+    this.storage.create();
+  }
 
   slideOpts = {
     slidesPerView: 1.1,
@@ -32,25 +39,64 @@ export class InicioPage implements OnInit {
   };
 
   async ngOnInit() {
-   
+   this.cliente = await this.storage.get('cliente');
+   console.log(this.cliente);
      
 
   }
 
-  onProducts() {
-    this.router.navigate(['products']);
+  async ionViewWillEnter() {
+    this.Cargar_Categorias();
+    this.Cargar_Productos();
+    let pedido = await this.storage.get('pedidos');
+    //this.pedidolocal = pedido != null ? pedido : [];
   }
 
-  onFavorite() {
-    this.router.navigate(['favorites']);
+  async Cargar_Categorias() {
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Categorias_Listado()
+      .subscribe((data: any) => {
+        this.categorias = data.info.items;
+        console.log(this.categorias);
+        this.total = data.info.total;
+        l.dismiss();
+      }, (error: any) => {
+        l.dismiss();
+      });
   }
 
-  onClick() {
-
+  async Cargar_Productos() {
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Producto_Listado()
+      .subscribe((data: any) => {
+        this.productos = data.info.items;
+        this.productos.forEach(producto => {
+          producto.cantidad = 0;
+        });
+        this.totalP = data.info.total;
+        console.log(this.productos);
+        l.dismiss();
+      }, (error: any) => {
+        l.dismiss();
+      });
   }
 
-  onExplore() {
-
+  async selectCategoria(categoria:any){
+    console.log(categoria)
+    let l = await this.loading.create();
+    l.present();
+    this.servicio.Buscar_Productos_Categoria(categoria.id)
+      .subscribe((data: any) => {
+        this.productos = data.info.items;
+        this.productos.forEach(producto => {
+          producto.cantidad = 0;
+        });
+        l.dismiss();
+      }, (error: any) => {
+        l.dismiss();
+      });
   }
 
 }

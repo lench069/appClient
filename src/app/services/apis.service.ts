@@ -65,6 +65,29 @@ export class ApisService {
     return fd;
   };
 
+  //*************PRODUCTOS******** */
+
+  Producto_Listado(_texto: string = '') {
+    return this.http.post(this.URL_API + 'listado-productos', this.objectToFormData({
+      texto: _texto
+    }));
+  }
+
+  //***************CATEGORIA ************/
+  Categorias_Listado() {
+    return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({
+    }));
+  }
+
+  Buscar_Productos_Categoria(_id: number) {
+    return this.http.get(this.URL_API + 'consultar-producto-categoria/' + _id);
+  }
+
+  //*****************PRODUCTO********** */
+  Buscar_Producto(_id: number) {
+    return this.http.get(this.URL_API + 'consultar-producto/' + _id);
+  }
+
   async Mensaje(texto: string, tipo: string = 'success') {
     let t = await this.toast.create({
       message: texto,
