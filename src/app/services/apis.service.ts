@@ -96,4 +96,32 @@ export class ApisService {
     });
     t.present();
   }
+
+  //***************PEDIDO************ */
+  Pedido_Guardar(data: any) {
+    console.log(data);
+    return this.http.post(this.URL_API + (data.id == 0 ? 'crear-pedido' : 'actualizar-pedido/' + data.id), this.objectToFormData({
+      id: data.id,
+      cliente_id: data.cliente_id,
+      usuario_id: data.usuario_id,
+      fecha: data.fecha,
+      estado: data.estado == 0 ? '0' : data.estado,
+      subtotal: data.subtotal,
+      iva: data.iva,
+      total: data.total,
+      mesa: data.mesa,
+    }));
+  }
+
+  Pedido_Guardar_Producto(data: any) {
+    return this.http.post(this.URL_API + 'pedido/agregar-producto/' + data.pedido_id, this.objectToFormData({
+      id: data.id,
+      pedido_id: data.pedido_id,
+      producto_id: data.producto_id,
+      cantidad: data.cantidad,
+      precio: data.precio
+    }));
+  }
+
+
 }

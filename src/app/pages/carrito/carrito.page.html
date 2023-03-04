@@ -1,9 +1,88 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>carrito</ion-title>
+ <ion-header>
+  <ion-toolbar lines="none" mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="util.openSideMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pedido</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <div *ngIf="!flag">
+    <h4 style="background-color: #ff7c31;">No tienes items seleccionados</h4>
+  </div>
+
+  <ion-row *ngFor="let item of pedidos; let i = index">
+
+    <ion-col size="4">
+      <div class="featured_img" [style.backgroundImage]="'url('+item.imagen +')'"></div>
+    </ion-col>
+
+    <ion-col size="8">
+
+      <div class="text">
+        <ion-label class="ttl">{{item.nombre}}</ion-label>
+        <ion-label class="sub_ttl">{{item.descripcion}}</ion-label>
+        <div class="price">
+          <ion-label>{{item.precio * item.cantidad | currency}}</ion-label>
+        </div>
+        <div class="btn">
+          <ion-buttons slot="start">
+            <ion-button (click)="onRemove(item,i)">
+              <ion-icon name="remove" color="light"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-buttons class="label_number">
+            <ion-button>
+              <ion-label>{{item.cantidad}}</ion-label>
+            </ion-button>
+          </ion-buttons>
+
+          <ion-buttons slot="end">
+            <ion-button (click)="onAdd(item,i)">
+              <ion-icon name="add" color="light"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </div>
+
+    </ion-col>
+
+  </ion-row>
+<div *ngIf="flag">
+
+
+  <div class="line"></div>
+
+  <div class="discount_div">
+    <ion-label style="color: black;">Subtotal</ion-label>
+    <ion-label>{{subTotal | currency}}</ion-label>
+  </div>
+  <div class="discount_div">
+    <ion-label style="color: black;">Iva (12%)</ion-label>
+    <ion-label>{{iva | currency}}</ion-label>
+  </div>
+
+  <div class="line"></div>
+
+  <div class="total">
+    <ion-label>Total Orden</ion-label>
+    <ion-label>{{Total | currency}}</ion-label>
+  </div>
+
+  <ion-button class="content_button" (click)="pedir()" expand="block">
+    Pedir
+  </ion-button>
+
+</div>
 
 </ion-content>

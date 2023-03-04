@@ -7,6 +7,11 @@
           <ion-icon name="chevron-back-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
+      <ion-buttons slot="end" class="btn">
+        <ion-button (click)="onCart()">
+          <ion-icon name="cart"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </div>
   </div>
 
@@ -60,7 +65,7 @@
       </ion-col>
     </ion-row>
 
-    <ion-button class="content_button" (click)="onOrder()"  expand="block">
+    <ion-button class="content_button" (click)="onOrder(producto)"  expand="block">
       Agregar
     </ion-button>
 
