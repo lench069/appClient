@@ -18,22 +18,10 @@ export class AppComponent {
   cart() {
     this.router.navigate(['tabs/tab3']);
   }
-  payments() {
-    this.router.navigate(['payments-details']);
-  }
-  orders() {
-    this.router.navigate(['order']);
-  }
-  notifications() {
-    this.router.navigate(['']);
-  }
-  inbox() {
-    this.router.navigate(['']);
-  }
-  about() {
-    this.router.navigate(['']);
+  perfil() {
+    this.router.navigate(['tabs/tab4']);
   }
   logout() {
-    this.router.navigate(['login']);
+    this.router.navigate(['bienvenida']);
   }
 }

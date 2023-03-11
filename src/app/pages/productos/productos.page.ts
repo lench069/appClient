@@ -18,6 +18,7 @@ export class ProductosPage implements OnInit {
   public productos: any[] = [];
   public totalP: number = 0;
   public categoriaId: number = 0;
+  public texto: string = '';
 
   constructor(private router: Router,
     public util : UtilsService,
@@ -43,9 +44,13 @@ export class ProductosPage implements OnInit {
   }
 
   async Cargar_Productos() {
-    let l = await this.loading.create();
+
+    if(this.texto == ''){
+      this.selectCategoria(this.categoriaId);
+    }else{
+      let l = await this.loading.create();
     l.present();
-    this.servicio.Producto_Listado()
+    this.servicio.Producto_Listado(this.texto)
       .subscribe((data: any) => {
         this.productos = data.info.items;
         this.productos.forEach(producto => {
@@ -57,6 +62,7 @@ export class ProductosPage implements OnInit {
       }, (error: any) => {
         l.dismiss();
       });
+    }  
   }
 
   async selectCategoria(id_categoria:number){

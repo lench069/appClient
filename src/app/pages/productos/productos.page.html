@@ -15,7 +15,7 @@
 <ion-content class="ion-padding">
   <div class="searchBar">
     <ion-item lines="none">
-      <ion-input type="text" placeholder="Bucar..."></ion-input>
+      <ion-input type="text" debounce="500" (ionChange)="Cargar_Productos()" [(ngModel)]="texto" placeholder="Bucar..."></ion-input>
       <ion-icon slot="end" name="search-outline" style="margin-right: 60px;"></ion-icon>
       <div class="icon">
         <ion-icon slot="end" name="funnel-outline" class="icn"></ion-icon>

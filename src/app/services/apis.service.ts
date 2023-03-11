@@ -74,8 +74,9 @@ export class ApisService {
   }
 
   //***************CATEGORIA ************/
-  Categorias_Listado() {
-    return this.http.post(this.URL_API + 'listado-categoria', this.objectToFormData({
+  Categoria_Listado(_texto: string = '') {
+    return this.http.post(this.URL_API + 'listado-categorias', this.objectToFormData({
+      texto: _texto
     }));
   }
 

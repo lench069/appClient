@@ -18,6 +18,7 @@ export class InicioPage implements OnInit {
   public total: number = 0;
   public productos: any[] = [];
   public totalP: number = 0;
+  public texto: string = '';
 
   constructor(
     private router: Router,
@@ -56,7 +57,7 @@ export class InicioPage implements OnInit {
   async Cargar_Categorias() {
     let l = await this.loading.create();
     l.present();
-    this.servicio.Categorias_Listado()
+    this.servicio.Categoria_Listado(this.texto)
       .subscribe((data: any) => {
         this.categorias = data.info.items;
         console.log(this.categorias);
