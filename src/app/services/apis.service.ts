@@ -8,7 +8,8 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class ApisService {
 
-  private URL_API: string = 'http://192.168.100.94/appBackEnd/';
+  //private URL_API: string = 'http://192.168.100.94/appBackEnd/';
+  private URL_API: string = 'http://riobytes.com/appBackEnd/';
 
   constructor(
     private router: Router,
@@ -132,10 +133,11 @@ export class ApisService {
     return this.http.post(
       this.URL_API + 'actualizar-cliente/'+data.id, 
       this.objectToFormData({
-        nombres: data.nombres,
-        apellidos: data.apellidos,
-        foto:data.imagen
-
+        nombre: data.nombre,
+        cedula: data.cedula,
+        telefono: data.telefono,
+        correo: data.correo,
+        direccion: data.direccion
       }) 
       );
   };

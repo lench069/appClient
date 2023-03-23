@@ -74,8 +74,8 @@ ion-header {
             ion-button {
               background: linear-gradient(#ffa124, #ff7c31);
               border-radius: 30%;
-              height: 35px;
-              width: 40px;
+              height: 30px;
+              width: 30px;
             }
           }
           .label_number {
@@ -123,6 +123,12 @@ ion-header {
       font-family: "bold";
       font-size: 22px;
       color: #ff7c31;
+    }
+
+    .iconDelete {
+      color: #ffff;
+      padding-right: 5px;
+      padding-left: 5px;
     }
   }
   

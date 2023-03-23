@@ -159,6 +159,14 @@ export class CarritoPage implements OnInit {
       });
     }
 }
+deleteItem(producto:any,i:number){
+  this.pedidos.splice(i-1, 1);
+  this.storage.set('pedidos', this.pedidos);
+  this.calcularTotal();
+  if(this.pedidos.length == 0){
+  this.flag = false;
+  }
+}
 
 
 }

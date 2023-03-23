@@ -14,6 +14,7 @@
     <ion-tab-button tab="tab3">
       <ion-icon name="cart"></ion-icon>
       <ion-label>Carrito</ion-label>
+      <ion-badge class="carts" item-right color="danger">{{pedidolocal!= null ? pedidolocal.length : 0}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="tab4">

@@ -32,7 +32,7 @@
         <ion-label class="ttl">{{item.nombre}}</ion-label>
         <ion-label class="sub_ttl">{{item.descripcion}}</ion-label>
         <div class="price">
-          <ion-label>{{item.precio * item.cantidad | currency}}</ion-label>
+          <ion-label>{{item.precio | currency}}</ion-label>
         </div>
         <div class="btn">
           <ion-buttons slot="start">
@@ -52,11 +52,18 @@
               <ion-icon name="add" color="light"></ion-icon>
             </ion-button>
           </ion-buttons>
+
+
+            <ion-buttons slot="end" >
+            <ion-button (click)="deleteItem(item,i)">
+              <ion-icon  name="trash" color="light"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
         </div>
       </div>
 
     </ion-col>
-
   </ion-row>
 <div *ngIf="flag">
 
