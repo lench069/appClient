@@ -87,8 +87,15 @@ export class BienvenidaPage implements OnInit {
       .subscribe((data: any) => {
         l.dismiss();
         console.log(data);
-        if (data.info.item.id > 0) {     
+        if (data.mensaje == "Cliente encontrado.") {     
           console.log('Validacion'); 
+          this.storage.set('cliente', {
+            correo: data.info.item.correo,
+            direccion: data.info.item.direccion,
+            identificacion: data.info.item.cedula,
+            nombre: data.info.item.nombre,
+            telefono: data.info.item.telefono,
+            id: data.info.item.id});
           this.servicio.irA('/tabs');
         } else{
           this.servicio.irA('/registro');

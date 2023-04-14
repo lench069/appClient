@@ -6,11 +6,6 @@
         <ion-icon name="menu"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button >
-        <ion-icon name="notifications"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -20,31 +15,30 @@
 
     <ion-thumbnail>
       <img src="assets/images/user.png" />
-      <ion-buttons>
-        <ion-button >
-          <ion-icon slot="start" name="pencil" color="light"></ion-icon>
-        </ion-button>
-      </ion-buttons>
     </ion-thumbnail>
 
     <ion-label class="heading">Hola {{nombre}}!</ion-label>
 
   </div>
-
   <ion-item lines="none">
-    <ion-input type="text" placeholder="Cedula" [(ngModel)]="cedula"></ion-input>
+     <ion-label position="floating">Cedula</ion-label>
+    <ion-input  type="text" [(ngModel)]="cedula"></ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input type="text" placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" [(ngModel)]="nombre"></ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input type="text" placeholder="Telefono" [(ngModel)]="telefono"></ion-input>
+    <ion-label position="floating">Telefono</ion-label>
+    <ion-input type="text" [(ngModel)]="telefono"></ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input type="email" placeholder="Email" [(ngModel)]="correo"></ion-input>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="correo"></ion-input>
   </ion-item>
   <ion-item lines="none">
-    <ion-input type="text" placeholder="Direccion" [(ngModel)]="direccion"></ion-input>
+    <ion-label position="floating">Direccion</ion-label>
+    <ion-input type="text" [(ngModel)]="direccion"></ion-input>
   </ion-item>
 
   <div class="btn">
